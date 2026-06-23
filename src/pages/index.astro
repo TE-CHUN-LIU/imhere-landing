@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Assessment from "../components/Assessment";
-import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, SOCIAL, EVENTS } from "../data/services";
+import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, TRAINING, SOCIAL, EVENTS } from "../data/services";
 
 const voices = [
   { tag: "個人頌缽", text: "一開始足缽和銅鑼的時候，感覺之前膝蓋舊傷有點不舒服，我很意外，因為很久沒發作了。後面那個不舒服慢慢就流掉了。缽在身上磨，好舒服，震動震到身體很裡面。身體越來越鬆，突然被自己的打呼聲嚇醒，太舒服太感謝老師了！" },
@@ -83,10 +83,27 @@ const faqs = [
     <div class="wrap center">
       <span class="eyebrow">Training</span>
       <h2 class="sec-title">專業音療師培訓</h2>
-      <p class="lead">
-        想把頌缽聲療從一次體驗，走成一門能陪伴他人的專業？這套培訓陪你從聲音的原理、缽的操作到帶領實務，一步步成為能獨立帶領的音療師。
-        <!-- TODO 慢慢補：課程大綱、適合對象、上課時數、費用、開課梯次 -->
-      </p>
+      <p class="lead">{TRAINING.intro}</p>
+      <div class="aud">{TRAINING.audience.map((a) => <span>{a}</span>)}</div>
+
+      <div class="tiers">
+        {TRAINING.levels.map((lv) => (
+          <article class="tier">
+            <div class="tier-head"><h3>{lv.name}</h3><span class="tier-price">{lv.price}</span></div>
+            <p>{lv.detail}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="combo">{TRAINING.combo}</div>
+
+      <div class="sched">
+        {TRAINING.schedule.map((s) => (
+          <div class="sched-row"><span class="m">{s.month}</span><span class="i">{s.items}</span></div>
+        ))}
+      </div>
+
+      <p class="tnote">{TRAINING.note}</p>
       <div class="cta">
         <a class="btn btn-pri" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
       </div>
@@ -104,7 +121,10 @@ const faqs = [
           {EVENTS.map((e) => (
             <div class="event">
               <div class="when"><span class="d">{e.date}</span><span class="w">（{e.day}）</span></div>
-              <div class="ename">{e.name}</div>
+              <div class="einfo">
+                <div class="ename">{e.name}</div>
+                <div class="emeta">{e.time}　·　{e.price}</div>
+              </div>
               <a class="btn btn-pri" href={e.url} target="_blank" rel="noopener">報名</a>
             </div>
           ))}
