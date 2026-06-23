@@ -68,34 +68,49 @@ export const SERVICES: Service[] = [
   },
 ];
 
-// 自評題目（1–5 分）
-export type Q = { id: keyof typeof WEIGHTS["bowl"]; label: string; hint: string; lo: string; hi: string };
+// 自評題目（同意度 1–5：非常不同意 → 非常同意）
+export type Q = { id: string; text: string };
 export const QUESTIONS: Q[] = [
-  { id: "sleep",   label: "睡眠品質",       hint: "難入睡或睡不沉嗎？", lo: "睡得很好", hi: "幾乎睡不好" },
-  { id: "fatigue", label: "容易疲憊",       hint: "醒來還是覺得累？",   lo: "精神不錯", hi: "總是很累" },
-  { id: "stress",  label: "壓力承載",       hint: "最近壓力大嗎？",     lo: "還算輕鬆", hi: "快撐不住" },
-  { id: "mind",    label: "思緒停不下來",   hint: "腦袋一直轉？",       lo: "很平靜",   hi: "停不下來" },
-  { id: "relax",   label: "想找個地方放鬆", hint: "渴望喘口氣嗎？",     lo: "還好",     hi: "非常想" },
+  { id: "q1",  text: "最近生活中的壓力，讓我有些喘不過氣" },
+  { id: "q2",  text: "我經常感到疲憊，即使休息後也很難恢復精神" },
+  { id: "q3",  text: "我渴望一段安靜的時間，單純地休息與陪伴自己" },
+  { id: "q4",  text: "我的睡眠品質不太理想，容易淺眠、多夢或睡醒仍感到疲累" },
+  { id: "q5",  text: "我已經照顧了很多人，卻很少好好照顧自己" },
+  { id: "q6",  text: "我常感受到情緒卡在心裡，卻不知道該如何整理" },
+  { id: "q7",  text: "我的腦袋常常停不下來，即使休息時也一直在思考事情" },
+  { id: "q8",  text: "某些問題或課題，似乎反覆在我的人生中出現" },
+  { id: "q9",  text: "我對未來有些迷惘，不太確定自己真正想要的是什麼" },
+  { id: "q10", text: "我願意更深入地認識自己，探索內在真正的感受與需求" },
 ];
 
-// 各療癒的權重（推薦邏輯）
-export const WEIGHTS = {
-  bowl:  { sleep: 2.0, fatigue: 1.0, stress: 1.0, mind: 2.0, relax: 1.5 },
-  reiki: { sleep: 1.0, fatigue: 2.0, stress: 1.5, mind: 0.5, relax: 1.5 },
-  theta: { sleep: 0.5, fatigue: 0.8, stress: 2.0, mind: 1.2, relax: 0.6 },
-} as const;
+// 每題偏向的療癒（同意度越高，對應療癒加越多分）
+export const Q_BIAS: Record<string, Service["key"][]> = {
+  q1: ["bowl", "reiki"],
+  q2: ["bowl", "reiki"],
+  q3: ["bowl", "reiki"],
+  q4: ["bowl", "reiki"],
+  q5: ["bowl", "theta", "reiki"],
+  q6: ["bowl", "theta", "reiki"],
+  q7: ["bowl", "theta", "reiki"],
+  q8: ["theta"],
+  q9: ["theta"],
+  q10: ["theta"],
+};
 
-export type Scores = Record<Q["id"], number>;
+export type Scores = Record<string, number>;
 
 // 回傳推薦的服務 key；平手優先序 bowl > reiki > theta
 export function recommend(s: Scores): Service["key"] {
   const order: Service["key"][] = ["bowl", "reiki", "theta"];
+  const total: Record<Service["key"], number> = { bowl: 0, reiki: 0, theta: 0 };
+  for (const q of QUESTIONS) {
+    const v = s[q.id] ?? 0;
+    for (const k of Q_BIAS[q.id]) total[k] += v;
+  }
   let best: Service["key"] = "bowl";
   let bestScore = -1;
   for (const k of order) {
-    const w = WEIGHTS[k];
-    const score = (Object.keys(w) as Q["id"][]).reduce((sum, id) => sum + w[id] * (s[id] ?? 0), 0);
-    if (score > bestScore) { bestScore = score; best = k; }
+    if (total[k] > bestScore) { bestScore = total[k]; best = k; }
   }
   return best;
 }

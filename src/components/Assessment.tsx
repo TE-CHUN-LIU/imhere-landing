@@ -4,13 +4,13 @@ import {
   BOOK_URL, type Scores,
 } from "../data/services";
 
-const init: Scores = { sleep: 3, fatigue: 3, stress: 3, mind: 3, relax: 3 };
+const init: Scores = Object.fromEntries(QUESTIONS.map((q) => [q.id, 3] as [string, number]));
 
 export default function Assessment() {
   const [scores, setScores] = useState<Scores>(init);
   const [done, setDone] = useState(false);
 
-  const set = (id: keyof Scores, v: number) =>
+  const set = (id: string, v: number) =>
     setScores((s) => ({ ...s, [id]: v }));
 
   const rec = recommend(scores);
@@ -46,19 +46,16 @@ export default function Assessment() {
     <div className="assess-card">
       {QUESTIONS.map((q) => (
         <div className="q" key={q.id}>
-          <div className="q-label">
-            <span>{q.label}</span>
-            <span className="q-hint">{q.hint}</span>
-          </div>
+          <div className="q-label"><span>{q.text}</span></div>
           <input
             type="range" min={1} max={5} step={1}
             value={scores[q.id]}
             onChange={(e) => set(q.id, Number(e.target.value))}
-            aria-label={q.label}
+            aria-label={q.text}
           />
           <div className="q-scale">
-            <span>{q.lo}</span>
-            <span>{q.hi}</span>
+            <span>非常不同意</span>
+            <span>非常同意</span>
           </div>
         </div>
       ))}
