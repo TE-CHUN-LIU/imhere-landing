@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+interface Props { title?: string; description?: string; }
+const {
+  title = "I'm here 有我在療癒所｜頌缽音療・希塔・靈氣療癒｜桃園大園",
+  description = "給忙碌生活中的你，一段被好好照顧的時間。桃園大園頌缽音療、希塔療癒、靈氣療癒，蕙如老師帶領。3 分鐘自評，找到最適合你的療癒。",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:image" content="/photos/hero1.jpg" />
+    <meta name="theme-color" content="#F4EFE7" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600&display=swap"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
