@@ -110,15 +110,10 @@ const faqs = [
 
       <div class="combo">{TRAINING.combo}</div>
 
-      <div class="sched">
-        {TRAINING.schedule.map((s) => (
-          <div class="sched-row"><span class="m">{s.month}</span><span class="i">{s.items}</span></div>
-        ))}
-      </div>
-
       <p class="tnote">{TRAINING.note}</p>
       <div class="cta">
         <a class="btn btn-pri" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
+        <a class="btn btn-line" href={LINE_URL} target="_blank" rel="noopener">加 LINE 問梯次時間</a>
       </div>
     </div>
   </section>
