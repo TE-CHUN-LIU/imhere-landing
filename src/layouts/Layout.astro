@@ -5,6 +5,9 @@ const {
   title = "I'm here 有我在療癒所｜頌缽聲療・希塔・靈氣療癒｜桃園大園",
   description = "給忙碌生活中的你，一段被好好照顧的時間。桃園大園頌缽聲療、希塔療癒、靈氣療癒，蕙如老師帶領。3 分鐘自評，找到最適合你的療癒。",
 } = Astro.props;
+const site = Astro.site ?? new URL("https://imhere-landing.vercel.app");
+const ogImage = new URL("/photos/hero1.jpg", site).href;
+const canonical = new URL(Astro.url.pathname, site).href;
 ---
 <!doctype html>
 <html lang="zh-Hant">
@@ -14,11 +17,20 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="zh_TW" />
-    <meta property="og:image" content="/photos/hero1.jpg" />
+    <meta property="og:site_name" content="I'm here 有我在療癒所" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1800" />
+    <meta property="og:image:height" content="1350" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="theme-color" content="#F4EFE7" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

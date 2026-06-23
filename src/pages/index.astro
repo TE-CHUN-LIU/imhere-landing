@@ -26,8 +26,21 @@ const faqs = [
 ---
 
 <Layout>
+  <!-- 固定導覽列 -->
+  <nav class="topnav">
+    <a class="nv-brand" href="#top">I'm here</a>
+    <div class="nv-links">
+      <a href="#assess">自評</a>
+      <a href="#services">服務</a>
+      <a href="#training">培訓</a>
+      <a href="#events">活動</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nv-book btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">預約</a>
+  </nav>
+
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="top">
     <img class="bg" src="/photos/hero1.jpg" alt="有我在療癒所 頌缽空間" />
     <div class="scrim"></div>
     <div class="inner">
