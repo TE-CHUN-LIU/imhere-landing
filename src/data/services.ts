@@ -19,9 +19,9 @@ export const EVENTS: EventItem[] = [
 
 // 社群媒體連結（填了才會顯示，留空不顯示，不會破版）— TODO: 慢慢補
 export const SOCIAL = {
-  instagram: "", // TODO: 補 IG 連結
-  facebook:  "", // TODO: 補 FB 連結
-  threads:   "", // TODO: 補 Threads 連結
+  instagram: "https://www.instagram.com/im_here_healingspace/",
+  facebook:  "https://www.facebook.com/profile.php?id=61557036314307",
+  threads:   "", // 尚未提供，留空不顯示
 };
 
 export type Service = {
