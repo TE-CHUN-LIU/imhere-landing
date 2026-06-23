@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Assessment from "../components/Assessment";
-import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, SOCIAL } from "../data/services";
+import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, SOCIAL, EVENTS } from "../data/services";
 
 const voices = [
   { tag: "個人頌缽", text: "一開始足缽和銅鑼的時候，感覺之前膝蓋舊傷有點不舒服，我很意外，因為很久沒發作了。後面那個不舒服慢慢就流掉了。缽在身上磨，好舒服，震動震到身體很裡面。身體越來越鬆，突然被自己的打呼聲嚇醒，太舒服太感謝老師了！" },
@@ -97,13 +97,21 @@ const faqs = [
     <div class="wrap center">
       <span class="eyebrow">Events</span>
       <h2 class="sec-title">主題活動</h2>
-      <p class="lead">
-        不定期推出的團體聲浴、節氣靜心與主題療癒場次，和大家一起在聲音裡好好休息。
-        <!-- TODO 慢慢補：近期場次（日期／主題／名額／報名方式） -->
-      </p>
-      <div class="cta">
-        <a class="btn btn-ghost" href={LINE_URL} target="_blank" rel="noopener">關注近期場次（LINE）</a>
-      </div>
+      <p class="lead">不定期推出的團體聲浴、節氣靜心與主題療癒場次，和大家一起在聲音裡好好休息。</p>
+      {EVENTS.length > 0 ? (
+        <div class="events">
+          {EVENTS.map((e) => (
+            <div class="event">
+              <div class="when"><span class="d">{e.date}</span><span class="w">（{e.day}）</span></div>
+              <div class="ename">{e.name}</div>
+              <a class="btn btn-pri" href={e.url} target="_blank" rel="noopener">報名</a>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="cta"><a class="btn btn-ghost" href={LINE_URL} target="_blank" rel="noopener">關注近期場次（LINE）</a></div>
+      )}
+      <p class="evnote">更多場次與最新消息，歡迎在 <a href={LINE_URL} target="_blank" rel="noopener">LINE</a> 關注 🤍</p>
     </div>
   </section>
 

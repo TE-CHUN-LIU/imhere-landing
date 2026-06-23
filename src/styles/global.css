@@ -78,6 +78,17 @@ img{display:block;max-width:100%}
 .svc .btn{margin-top:16px;width:100%;justify-content:center}
 
 /* testimonials */
+/* 主題活動 */
+.events{max-width:640px;margin:30px auto 0;display:flex;flex-direction:column;gap:14px}
+.event{display:flex;align-items:center;gap:18px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+.event .when{flex:none;min-width:92px;font-family:"Noto Serif TC",serif}
+.event .when .d{font-size:22px;font-weight:600;color:var(--accent-d)}
+.event .when .w{font-size:13px;color:var(--ink-soft);margin-left:2px}
+.event .ename{flex:1;font-size:16px;font-weight:600;color:var(--ink)}
+.event .btn{flex:none;padding:11px 24px;font-size:14px}
+@media(max-width:560px){.event{flex-wrap:wrap;gap:10px}.event .ename{flex:1 0 100%;order:3}.event .btn{margin-left:auto}}
+.evnote{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:18px}
+.evnote a{color:var(--accent-d);border-bottom:1px solid var(--line)}
 #voice{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .voice-grid{column-count:2;column-gap:20px;margin-top:36px}
 @media(max-width:680px){.voice-grid{column-count:1}}
