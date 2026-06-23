@@ -83,18 +83,19 @@ export const QUESTIONS: Q[] = [
   { id: "q10", text: "我願意更深入地認識自己，探索內在真正的感受與需求" },
 ];
 
-// 每題偏向的療癒（同意度越高，對應療癒加越多分）
-export const Q_BIAS: Record<string, Service["key"][]> = {
-  q1: ["bowl", "reiki"],
-  q2: ["bowl", "reiki"],
-  q3: ["bowl", "reiki"],
-  q4: ["bowl", "reiki"],
-  q5: ["bowl", "theta", "reiki"],
-  q6: ["bowl", "theta", "reiki"],
-  q7: ["bowl", "theta", "reiki"],
-  q8: ["theta"],
-  q9: ["theta"],
-  q10: ["theta"],
+// 每題對各療癒的權重（同意度 × 權重 = 加分）
+// 頌缽、靈氣同屬「身心放鬆」但有側重：壓力/睡眠偏頌缽、疲憊/渴望休息偏靈氣；情緒/課題偏希塔
+export const Q_WEIGHTS: Record<string, Partial<Record<Service["key"], number>>> = {
+  q1:  { bowl: 2,   reiki: 1 },              // 壓力喘不過氣 → 偏頌缽
+  q2:  { reiki: 2,  bowl: 1 },               // 疲憊難恢復 → 偏靈氣
+  q3:  { reiki: 2,  bowl: 1 },               // 渴望安靜休息陪伴 → 偏靈氣
+  q4:  { bowl: 2,   reiki: 1 },              // 睡眠不理想 → 偏頌缽
+  q5:  { bowl: 1,   reiki: 1,   theta: 1 },  // 照顧別人忽略自己 → 三者
+  q6:  { bowl: 1,   reiki: 1,   theta: 1.2 },// 情緒卡住 → 略偏希塔
+  q7:  { bowl: 1.2, reiki: 1,   theta: 1 },  // 腦袋停不下來 → 略偏頌缽
+  q8:  { theta: 1.5 },                       // 課題反覆 → 希塔
+  q9:  { theta: 1.5 },                       // 對未來迷惘 → 希塔
+  q10: { theta: 1.5 },                       // 願意認識自己 → 希塔
 };
 
 export type Scores = Record<string, number>;
@@ -105,7 +106,8 @@ export function recommend(s: Scores): Service["key"] {
   const total: Record<Service["key"], number> = { bowl: 0, reiki: 0, theta: 0 };
   for (const q of QUESTIONS) {
     const v = s[q.id] ?? 0;
-    for (const k of Q_BIAS[q.id]) total[k] += v;
+    const w = Q_WEIGHTS[q.id] ?? {};
+    for (const k of order) total[k] += (w[k] ?? 0) * v;
   }
   let best: Service["key"] = "bowl";
   let bestScore = -1;
