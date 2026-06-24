@@ -80,7 +80,7 @@ export const SERVICES: Service[] = [
   },
 ];
 
-// 自評題目（同意度 1–5：非常不同意 → 非常同意）
+// 自評題目（同意度 1–7：非常不同意 → 非常同意）
 export type Q = { id: string; text: string };
 export const QUESTIONS: Q[] = [
   { id: "q1",  text: "最近生活中的壓力，讓我有些喘不過氣" },
@@ -98,16 +98,16 @@ export const QUESTIONS: Q[] = [
 // 每題對各療癒的權重（同意度 × 權重 = 加分）
 // 頌缽、靈氣同屬「身心放鬆」但有側重：壓力/睡眠偏頌缽、疲憊/渴望休息偏靈氣；情緒/課題偏希塔
 export const Q_WEIGHTS: Record<string, Partial<Record<Service["key"], number>>> = {
-  q1:  { bowl: 2,   reiki: 1 },              // 壓力喘不過氣 → 偏頌缽
-  q2:  { reiki: 2,  bowl: 1 },               // 疲憊難恢復 → 偏靈氣
-  q3:  { reiki: 2,  bowl: 1 },               // 渴望安靜休息陪伴 → 偏靈氣
-  q4:  { bowl: 2,   reiki: 1 },              // 睡眠不理想 → 偏頌缽
-  q5:  { bowl: 1,   reiki: 1,   theta: 1 },  // 照顧別人忽略自己 → 三者
-  q6:  { bowl: 1,   reiki: 1,   theta: 1.2 },// 情緒卡住 → 略偏希塔
-  q7:  { bowl: 1.2, reiki: 1,   theta: 1 },  // 腦袋停不下來 → 略偏頌缽
-  q8:  { theta: 1.5 },                       // 課題反覆 → 希塔
-  q9:  { theta: 1.5 },                       // 對未來迷惘 → 希塔
-  q10: { theta: 1.5 },                       // 願意認識自己 → 希塔
+  q1:  { bowl: 2,   reiki: 1 },
+  q2:  { reiki: 2,  bowl: 1 },
+  q3:  { reiki: 2,  bowl: 1 },
+  q4:  { bowl: 2,   reiki: 1 },
+  q5:  { bowl: 1,   reiki: 1,   theta: 1 },
+  q6:  { bowl: 1,   reiki: 1,   theta: 1.2 },
+  q7:  { bowl: 1.2, reiki: 1,   theta: 1 },
+  q8:  { theta: 1.5 },
+  q9:  { theta: 1.5 },
+  q10: { theta: 1.5 },
 };
 
 export type Scores = Record<string, number>;
@@ -130,7 +130,7 @@ export function recommend(s: Scores): Service["key"] {
 }
 
 export const RESULT_COPY: Record<Service["key"], string> = {
-  bowl:  "你的身心需要一段「停下來」的時間。讓頌缽的聲音與振動，把停不下來的思緒、淺眠與緊繃，慢慢梳理開來。",
-  reiki: "你已經累了一段時間了。靈氣療癒給你一段安靜、被溫柔陪伴的休息，把消耗掉的能量補回來。",
-  theta: "你卡住的可能不只是身體。希塔療癒陪你看見壓力底下的信念與情緒，把卡點一個個鬆開。",
+  bowl: "透過頌缽的聲音與振動，陪伴身心慢慢放鬆，讓忙碌的思緒有機會停下來，回到當下，感受內在的安定與平衡。",
+  reiki: "透過靜心與能量陪伴，協助身心回到放鬆與平衡的狀態，給自己一段安靜休息的時間。",
+  theta: "透過溫和的對話與覺察，陪伴你探索內在信念與情緒，整理當下的困惑與卡點，看見更多可能性。",
 };

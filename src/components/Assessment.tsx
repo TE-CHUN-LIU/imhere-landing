@@ -4,7 +4,7 @@ import {
   BOOK_URL, type Scores,
 } from "../data/services";
 
-const init: Scores = Object.fromEntries(QUESTIONS.map((q) => [q.id, 3] as [string, number]));
+const init: Scores = Object.fromEntries(QUESTIONS.map((q) => [q.id, 4] as [string, number]));
 
 export default function Assessment() {
   const [scores, setScores] = useState<Scores>(init);
@@ -19,25 +19,23 @@ export default function Assessment() {
   if (done) {
     return (
       <div className="assess-card result">
-        <span className="pill">最適合你的是</span>
-        <h3>{svc.emoji} {svc.name}</h3>
+        <span className="pill">此刻推薦</span>
+        <h3>此刻，{svc.name} 也許最適合你</h3>
         <p>{RESULT_COPY[rec]}</p>
         <p style={{ fontSize: 13.5 }}>
           {svc.time}　·　{svc.price}
         </p>
         <div className="acts">
           <a className="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">
-            立即預約 {svc.name} →
+            預約 {svc.name}
           </a>
           <button className="btn btn-ghost" onClick={() => setDone(false)}>
-            重新評估
+            重新測一次
           </button>
         </div>
-        {rec !== "theta" && (
-          <p className="alt">
-            覺得卡在情緒、關係或人生方向？也很適合 <b>✦ 希塔療癒</b>
-          </p>
-        )}
+        <p className="alt">
+          不確定也沒關係 — 你也可以加 LINE 跟蕙如聊聊近期的身心狀態，再一起決定。
+        </p>
       </div>
     );
   }
@@ -48,7 +46,7 @@ export default function Assessment() {
         <div className="q" key={q.id}>
           <div className="q-label"><span>{q.text}</span></div>
           <input
-            type="range" min={1} max={5} step={1}
+            type="range" min={1} max={7} step={1}
             value={scores[q.id]}
             onChange={(e) => set(q.id, Number(e.target.value))}
             aria-label={q.text}
