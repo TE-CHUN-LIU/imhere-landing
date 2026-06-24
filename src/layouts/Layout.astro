@@ -32,6 +32,17 @@ const canonical = new URL(Astro.url.pathname, site).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="theme-color" content="#F4EFE7" />
+    <script is:inline>
+      // 把 hero 高度釘成載入當下的固定像素，避免 LINE/IG 內建瀏覽器捲動時
+      // 網址列收合改變視窗高度 → hero 跟著跳動。只在轉向時重算，不理會捲動造成的 resize。
+      (function () {
+        function setVH() {
+          document.documentElement.style.setProperty("--vh100", window.innerHeight + "px");
+        }
+        setVH();
+        window.addEventListener("orientationchange", function () { setTimeout(setVH, 250); });
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
