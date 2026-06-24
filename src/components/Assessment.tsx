@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  QUESTIONS, SERVICES, recommend, RESULT_COPY,
+  QUESTIONS, SERVICES, recommend,
   BOOK_URL, type Scores,
 } from "../data/services";
 
@@ -8,7 +8,7 @@ const init: Scores = Object.fromEntries(QUESTIONS.map((q) => [q.id, 4] as [strin
 
 export default function Assessment() {
   const [scores, setScores] = useState<Scores>(init);
-  const [done, setDone] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const set = (id: string, v: number) =>
     setScores((s) => ({ ...s, [id]: v }));
@@ -16,54 +16,55 @@ export default function Assessment() {
   const rec = recommend(scores);
   const svc = SERVICES.find((s) => s.key === rec)!;
 
-  if (done) {
-    return (
-      <div className="assess-card result">
-        <span className="pill">此刻推薦</span>
-        <h3>此刻，{svc.name} 也許最適合你</h3>
-        <p>{RESULT_COPY[rec]}</p>
-        <p style={{ fontSize: 13.5 }}>
-          {svc.time}　·　{svc.price}
-        </p>
-        <div className="acts">
-          <a className="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">
-            預約 {svc.name}
-          </a>
-          <button className="btn btn-ghost" onClick={() => setDone(false)}>
-            重新測一次
-          </button>
-        </div>
-        <p className="alt">
-          不確定也沒關係 — 你也可以加 LINE 跟蕙如聊聊近期的身心狀態，再一起決定。
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <div className="assess-card">
-      {QUESTIONS.map((q) => (
-        <div className="q" key={q.id}>
-          <div className="q-label"><span>{q.text}</span></div>
-          <input
-            type="range" min={1} max={7} step={1}
-            value={scores[q.id]}
-            onChange={(e) => set(q.id, Number(e.target.value))}
-            aria-label={q.text}
-          />
-          <div className="q-scale">
-            <span>非常不同意</span>
-            <span>非常同意</span>
+    <div className="assess">
+      <div className="qs">
+        {QUESTIONS.map((q) => (
+          <div className="q" key={q.id}>
+            <div className="q-text">{q.text}</div>
+            <input
+              type="range" min={1} max={7} step={1}
+              value={scores[q.id]}
+              onChange={(e) => set(q.id, Number(e.target.value))}
+              aria-label={q.text}
+            />
+            <div className="q-scale">
+              <span>非常不同意</span>
+              <span>非常同意</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="assess-go">
+        <button className="btn btn-pri" onClick={() => setRevealed(true)}>
+          看看適合我的療癒　→
+        </button>
+      </div>
+
+      {revealed && (
+        <div className="result">
+          <div className="result-eyebrow latin">For you now</div>
+          <div className="result-row">
+            <div className="result-main">
+              <h3>此刻，{svc.name} 也許最適合你</h3>
+              <p>{svc.desc}</p>
+              <div className="result-meta">{svc.meta}</div>
+            </div>
+            <div className="result-acts">
+              <a className="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">
+                預約 {svc.name}
+              </a>
+              <button className="btn btn-ghost" onClick={() => setRevealed(false)}>
+                重新測一次
+              </button>
+            </div>
+          </div>
+          <div className="result-note">
+            不確定也沒關係 — 你也可以加 LINE 跟蕙如聊聊近期的身心狀態，再一起決定。
           </div>
         </div>
-      ))}
-      <button
-        className="btn btn-pri"
-        style={{ width: "100%", justifyContent: "center", marginTop: 8 }}
-        onClick={() => setDone(true)}
-      >
-        看看適合我的療癒 →
-      </button>
+      )}
     </div>
   );
 }

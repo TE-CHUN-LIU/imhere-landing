@@ -3,28 +3,27 @@ import Layout from "../layouts/Layout.astro";
 import Assessment from "../components/Assessment";
 import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, TRAINING, SOCIAL, EVENTS } from "../data/services";
 
+// 見證牆（方向 B：精煉短引文 + masonry）
 const voices = [
-  { tag: "個人頌缽", text: "一開始足缽和銅鑼的時候，感覺之前膝蓋舊傷有點不舒服，我很意外，因為很久沒發作了。後面那個不舒服慢慢就流掉了。缽在身上磨，好舒服，震動震到身體很裡面。身體越來越鬆，突然被自己的打呼聲嚇醒，太舒服太感謝老師了！" },
-  { tag: "個人頌缽", text: "這是我第一次體驗頌缽，本來以為會睡著，但我沒有。一開始思緒很混亂，透過一次次的缽聲把我帶回當下，我才意識到頭腦多麼 overload。慢慢那些訊息我完全沒印象了，也不重要了。我沒想過，專注自己是這麼爽的一件事！" },
-  { tag: "雙人頌缽", text: "我以為我沒睡著，都有聽到老師敲缽，但我老婆說我打呼很大聲。我本來不太好睡，那天回家很快就睡著，隔天居然沒聽到鬧鐘聲。後來精神好很多，開會也比較專注，謝謝蕙如，下個月會再回訪。" },
-  { tag: "團體頌缽", text: "本來只是好奇想讓自己休息一下，沒想到不只一下（笑）。那個聲音從耳朵慢慢進到身體裡，有點麻麻的，好像有什麼被輕輕梳理，不知不覺就睡著了。醒來後肩膀放鬆了、呼吸變深，整個人變得很輕、很有精神。" },
-  { tag: "希塔療癒", text: "謝謝蕙如老師溫暖的引導，讓我看到小時候和媽媽的關係——那個為了討媽媽喜歡而不停逞強、不允許放鬆的自己。默默眼淚就掉了下來，那一刻我知道我終於擁抱到內在那個小女孩，胸口那塊石頭終於瓦解。" },
-  { tag: "希塔療癒", text: "做完當下沒什麼特別感覺，但默默生活有好多變化——我不再執著那些讓自己不舒服的關係，也開始踏出舒適圈。這是我第三次來，謝謝蕙如伴著我成長。" },
+  { tag: "個人頌缽", text: "缽在身上磨，好舒服，震動震到身體很裡面。身體越來越鬆，突然被自己的打呼聲嚇醒，太舒服太感謝老師了！" },
+  { tag: "個人頌缽", text: "一開始思緒很混亂，透過一次次的缽聲把我帶回當下，我才意識到頭腦多麼 overload。我沒想過，專注自己是這麼爽的一件事！" },
+  { tag: "雙人頌缽", text: "那天回家很快就睡著，隔天居然沒聽到鬧鐘聲。後來精神好很多，開會也比較專注，謝謝蕙如，下個月會再回訪。" },
+  { tag: "團體頌缽", text: "那個聲音從耳朵慢慢進到身體裡，好像有什麼被輕輕梳理，不知不覺就睡著了。醒來後肩膀放鬆了、呼吸變深，整個人變得很輕。" },
+  { tag: "希塔療癒", text: "謝謝蕙如老師溫暖的引導，那一刻我知道我終於擁抱到內在那個小女孩，胸口那塊石頭終於瓦解。" },
+  { tag: "希塔療癒", text: "我不再執著那些讓自己不舒服的關係，也開始踏出舒適圈。這是我第三次來，謝謝蕙如伴著我成長。" },
 ];
 
-const skills = ["尼泊爾傳統頌缽聲療", "歐美聲音療癒", "身心放鬆帶領", "臼井靈氣療癒", "冥想引導"];
+const skills = ["尼泊爾傳統頌缽聲療", "歐美聲音療癒", "臼井靈氣療癒", "冥想引導"];
 
 const faqs = [
   { q: "需要穿什麼服裝？", a: "建議穿著舒適、放鬆的服裝即可。過程中多以躺姿或坐姿進行，讓身體能自在放鬆最重要。" },
   { q: "需要特別準備什麼嗎？", a: "不需要特別準備。體驗前請避免過度飲酒或空腹，建議療癒前一小時用餐完畢；並預留一些時間讓自己放慢步調，帶著輕鬆的心情前來即可。" },
-  { q: "孕婦可以參加嗎？", a: "懷孕期間是否適合，會依孕期狀況與服務內容有所不同。建議預約前先與我們聯繫討論，再依你的情況提供適合的建議。" },
-  { q: "遲到怎麼辦？", a: "為了讓每位來訪者擁有完整的體驗時間，建議準時抵達。若臨時遇到狀況歡迎提前告知；若遲到較久，可能需依當日預約安排調整服務時間，以不影響下一位來訪者為原則。" },
   { q: "體驗過程中會睡著嗎？", a: "非常有可能 ☺️ 許多人放鬆後會自然進入休息或半睡半醒的狀態，這是很正常的反應。無論清醒或睡著，都不會影響體驗的進行。" },
   { q: "不知道自己適合哪一項怎麼辦？", a: "沒關係，這是很常見的問題。你可以先做上面的 3 分鐘自評，或透過 LINE 跟我聊聊近期的身心狀態，我會依你的需求協助推薦適合的服務。" },
-  { q: "怎麼前往？在哪裡？", a: "本館位於桃園市大園區致祥一街 95 號 2 樓，距桃園高鐵站步行約 8 分鐘，建議搭乘高鐵或開車前往。詳細位置可點頁面下方的 Google 地圖。" },
   { q: "可以線上進行嗎？", a: "希塔療癒與靈氣療癒可線上進行；頌缽聲療因需要實際的聲音與身體振動，採現場體驗。" },
-  { q: "費用怎麼付款？", a: "可於預約後以轉帳或街口支付完成，詳細付款資訊會在預約確認時提供。" },
-  { q: "身體狀況提醒（預約前請主動告知）", a: "為了提供更適合您的服務，若有以下情況，請務必於預約前主動告知：\n• 懷孕中（尤其孕期前三個月）\n• 有癲癇病史\n• 近期接受手術（術後六個月內）\n• 體內有植入式醫療器材或金屬物（如心律調節器、心導管、鋼釘等）\n• 正在接受重大疾病治療或有特殊健康狀況\n如有任何健康相關疑慮，建議先諮詢您的醫療專業人員意見。" },
+  { q: "孕婦可以參加嗎？", a: "懷孕期間是否適合，會依孕期狀況與服務內容有所不同。建議預約前先與我們聯繫討論，再依你的情況提供適合的建議。" },
+  { q: "怎麼前往？在哪裡？", a: "本館位於桃園市大園區致祥一街 95 號 2 樓，距桃園高鐵站步行約 8 分鐘，建議搭乘高鐵或開車前往。詳細位置可點頁面下方的 Google 地圖。" },
+  { q: "身體狀況提醒（預約前請主動告知）", a: "若有以下情況請務必於預約前主動告知：懷孕中（尤其前三個月）、有癲癇病史、近期接受手術（術後六個月內）、體內有植入式醫療器材或金屬物（如心律調節器、鋼釘等）、正在接受重大疾病治療。如有健康疑慮，建議先諮詢您的醫療專業人員。" },
 ];
 
 // 結構化資料（SEO/GEO）：商家 + FAQ + 服務目錄 + 培訓
@@ -90,27 +89,30 @@ const jsonLd = {
 <Layout>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-  <!-- 固定導覽列 -->
+  <!-- NAV -->
   <nav class="topnav">
-    <a class="nv-brand" href="#top">I'm here</a>
-    <div class="nv-links">
-      <a href="#assess">自評</a>
-      <a href="#services">服務</a>
-      <a href="#training">培訓</a>
-      <a href="#events">活動</a>
-      <a href="#faq">FAQ</a>
+    <div class="bar">
+      <a class="nv-brand" href="#top">I&rsquo;m here</a>
+      <div class="nv-links">
+        <a href="#assess">自評</a>
+        <a href="#services">服務</a>
+        <a href="#training">培訓</a>
+        <a href="#events">活動</a>
+        <a href="#voices">見證</a>
+        <a href="#faq">FAQ</a>
+        <a class="nv-book btn btn-acc" href={BOOK_URL} target="_blank" rel="noopener">預約</a>
+      </div>
     </div>
-    <a class="nv-book btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">預約</a>
   </nav>
 
   <!-- HERO -->
   <header class="hero" id="top">
-    <img class="bg" src="/photos/hero1.jpg" alt="有我在療癒所 頌缽聲療空間 桃園大園" width="1800" height="1350" fetchpriority="high" decoding="async" />
     <div class="scrim"></div>
+    <div class="vacc">有我在・桃園大園</div>
     <div class="inner">
-      <div class="brand latin">I'm here</div>
-      <div class="zh">有我在療癒所</div>
-      <p class="tag">給忙碌生活中的你，<br />一段被好好照顧的時間。</p>
+      <div class="sub latin">a quiet place to be cared for</div>
+      <h1>給忙碌生活中的你，<br />一段被好好照顧的時間</h1>
+      <p class="desc">桃園大園・頌缽聲療・希塔療癒・靈氣療癒　|　蕙如老師帶領</p>
       <div class="cta">
         <a class="btn btn-pri" href="#assess">3 分鐘，找到適合我的療癒</a>
         <a class="btn btn-ghost" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
@@ -118,35 +120,37 @@ const jsonLd = {
     </div>
   </header>
 
-  <!-- 自評 -->
+  <!-- ASSESSMENT -->
   <section id="assess" class="sec">
-    <div class="wrap center">
-      <span class="eyebrow">最近的你？</span>
-      <h2 class="sec-title">先聽聽你的身體，<br />想被怎麼照顧</h2>
-      <p class="lead">拉動下面 10 個感受，看看此刻最適合你的療癒方式。沒有對錯，只是陪你停下來、感覺自己。</p>
+    <div class="wrap narrow">
+      <div class="head">
+        <span class="eyebrow">Self Check</span>
+        <h2 class="sec-title">先聽聽你的身體，<br />想被怎麼照顧</h2>
+        <p class="lead">拉動下面 6 個感受，看看此刻最適合你的療癒方式。沒有對錯，只是陪你停下來、感覺自己。</p>
+      </div>
       <Assessment client:load />
     </div>
   </section>
 
-  <!-- 服務 -->
+  <!-- SERVICES -->
   <section id="services" class="sec">
     <div class="wrap">
-      <div class="center">
+      <div class="head">
         <span class="eyebrow">Treatments</span>
         <h2 class="sec-title">三種陪伴身心的方式</h2>
       </div>
-      <div class="svc-grid">
-        {SERVICES.map((s) => (
-          <article class="svc">
+      <div class="svc-list">
+        {SERVICES.map((s, i) => (
+          <article class={`svc${i % 2 === 1 ? " flip" : ""}`}>
             <div class="ph"><img src={s.photo} alt={`${s.name}體驗｜有我在療癒所 桃園大園`} loading="lazy" /></div>
-            <div class="body">
-              <h3>{s.emoji} {s.name}</h3>
+            <div class="txt">
+              <div class="num latin">{s.num}</div>
+              <h3>{s.name}</h3>
               <p class="desc">{s.desc}</p>
-              <ul class="fit">{s.fit.map((f) => <li>{f}</li>)}</ul>
-              <div class="meta">
-                <div>🕐 {s.time}</div>
-                <div class="price">{s.price}</div>
-                <a class="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">預約 {s.name}</a>
+              <ul class="chips">{s.chips.map((c) => <li>{c}</li>)}</ul>
+              <div class="price">
+                <span class="main">{s.priceMain}</span>
+                <span class="note">{s.priceNote}</span>
               </div>
             </div>
           </article>
@@ -155,70 +159,72 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- 專業音療師培訓 -->
-  <section id="training" class="sec">
-    <div class="wrap center">
-      <span class="eyebrow">Training</span>
-      <h2 class="sec-title">專業音療師培訓</h2>
-      <p class="lead">{TRAINING.intro}</p>
-      <div class="aud">{TRAINING.audience.map((a) => <span>{a}</span>)}</div>
-
+  <!-- TRAINING -->
+  <section id="training" class="sec alt">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Training</span>
+        <h2 class="sec-title">專業音療師培訓</h2>
+        <p class="lead">{TRAINING.intro}</p>
+      </div>
       <div class="tiers">
         {TRAINING.levels.map((lv) => (
           <article class="tier">
-            <div class="tier-head"><h3>{lv.name}</h3><span class="tier-price">{lv.price}</span></div>
+            <div class="num latin">{lv.num}</div>
+            <div class="stage">{lv.stage}</div>
+            <div class="sub">{lv.sub}</div>
             <p>{lv.detail}</p>
+            <div class="tprice">{lv.price}</div>
           </article>
         ))}
       </div>
-
-      <div class="combo">{TRAINING.combo}</div>
-
+      <div class="combo">
+        <div class="ct">{TRAINING.comboTitle}</div>
+        <div class="cn">{TRAINING.comboNote}</div>
+      </div>
+      <div class="t-cta">
+        <a class="btn btn-acc" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
+        <a class="btn btn-text" href={LINE_URL} target="_blank" rel="noopener">加 LINE 問梯次時間 →</a>
+      </div>
       <p class="tnote">{TRAINING.note}</p>
-      <div class="cta">
-        <a class="btn btn-pri" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
-        <a class="btn btn-line" href={LINE_URL} target="_blank" rel="noopener">加 LINE 問梯次時間</a>
-      </div>
     </div>
   </section>
 
-  <!-- 主題活動 -->
+  <!-- EVENTS -->
   <section id="events" class="sec">
-    <div class="wrap center">
-      <span class="eyebrow">Events</span>
-      <h2 class="sec-title">主題活動</h2>
-      <p class="lead">不定期推出的團體聲浴、節氣靜心與主題療癒場次，和大家一起在聲音裡好好休息。</p>
-      {EVENTS.length > 0 ? (
-        <div class="events">
-          {EVENTS.map((e) => (
-            <div class="event">
-              <div class="when"><span class="d">{e.date}</span><span class="w">（{e.day}）</span></div>
-              <div class="einfo">
-                <div class="ename">{e.name}</div>
-                <div class="emeta">{e.time}　·　{e.price}</div>
-              </div>
-              <a class="btn btn-pri" href={e.url} target="_blank" rel="noopener">報名</a>
-            </div>
-          ))}
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Events</span>
+        <h2 class="sec-title">主題活動</h2>
+      </div>
+      <div class="events">
+        {EVENTS.map((e) => (
+          <div class="event">
+            <div class="when latin">{e.date} <span>（{e.day}）</span></div>
+            <h3>{e.name}</h3>
+            <div class="emeta">{e.time} ・ {e.price}</div>
+            <a class="btn btn-acc" href={e.url} target="_blank" rel="noopener">報名</a>
+          </div>
+        ))}
+        <div class="event follow">
+          <div class="ftxt">更多場次與最新消息</div>
+          <a href={LINE_URL} target="_blank" rel="noopener">在 LINE 關注 🤍</a>
         </div>
-      ) : (
-        <div class="cta"><a class="btn btn-ghost" href={LINE_URL} target="_blank" rel="noopener">關注近期場次（LINE）</a></div>
-      )}
-      <p class="evnote">更多場次與最新消息，歡迎在 <a href={LINE_URL} target="_blank" rel="noopener">LINE</a> 關注 🤍</p>
+      </div>
     </div>
   </section>
 
-  <!-- 客人回饋 -->
-  <section id="voice" class="sec">
+  <!-- VOICES -->
+  <section id="voices" class="sec alt">
     <div class="wrap">
-      <div class="center">
+      <div class="head">
         <span class="eyebrow">Voices</span>
-        <h2 class="sec-title">他們在這裡，<br />重新好好呼吸</h2>
+        <h2 class="sec-title">他們在這裡，重新好好呼吸</h2>
       </div>
-      <div class="voice-grid">
+      <div class="voices">
         {voices.map((v) => (
           <div class="quote">
-            <div class="tag">🤍 {v.tag}</div>
+            <div class="tag">{v.tag}</div>
             <p>{v.text}</p>
           </div>
         ))}
@@ -226,41 +232,36 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- 蕙如自介 -->
+  <!-- ABOUT -->
   <section id="about" class="sec">
-    <div class="wrap">
-      <div class="about">
-        <div class="ph"><img src="/photos/owner.jpg" alt="蕙如老師 — 有我在療癒所 聲音療癒師" loading="lazy" /></div>
-        <div>
-          <span class="eyebrow">About</span>
-          <h2>蕙如 ｜ Here</h2>
-          <div class="role">聲音療癒師 · 身心放鬆帶領者</div>
-          <div class="skills">{skills.map((s) => <span>{s}</span>)}</div>
-          <p class="stat">累積服務超過 1,000 人次</p>
-          <p>曾任職大型企業超過 10 年，因親身經歷身心失衡而踏上療癒之路。2024 年於桃園大園成立「有我在療癒所」，陪伴許多人在忙碌的生活中，重新找回放鬆與內在平衡。</p>
-          <p class="exp-title">授課與合作經驗</p>
-          <ul class="exp">
-            <li>企業員工紓壓活動</li>
-            <li>瑜珈空間與靜心課程合作</li>
-            <li>親子與兒童聲音療癒活動</li>
-            <li>公益頌缽與社區推廣課程</li>
-          </ul>
-          <p>希望透過聲音與陪伴，讓每個人都能在忙碌生活中，找到屬於自己的安定與平衡。</p>
+    <div class="wrap about">
+      <div class="ph"><img src="/photos/owner.jpg" alt="蕙如老師 — 有我在療癒所 聲音療癒師" loading="lazy" /></div>
+      <div>
+        <span class="eyebrow">About</span>
+        <h2>蕙如 ｜ Here</h2>
+        <div class="role">聲音療癒師 · 身心放鬆帶領者</div>
+        <div class="skills">{skills.map((s) => <span>{s}</span>)}</div>
+        <p class="pull">「希望透過聲音與陪伴，讓每個人都能在忙碌生活中，找到屬於自己的安定與平衡。」</p>
+        <p class="bio">曾任職大型企業超過 10 年，因親身經歷身心失衡而踏上療癒之路。2024 年於桃園大園成立「有我在療癒所」，陪伴許多人在忙碌的生活中，重新找回放鬆與內在平衡。</p>
+        <div class="stats">
+          <div><div class="n">1,000+</div><div class="l">累積服務人次</div></div>
+          <div><div class="n">10 年</div><div class="l">企業職涯轉身</div></div>
+          <div><div class="n">2024</div><div class="l">桃園大園成立</div></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="sec">
-    <div class="wrap">
-      <div class="center">
+  <section id="faq" class="sec alt">
+    <div class="wrap narrow">
+      <div class="head">
         <span class="eyebrow">FAQ</span>
         <h2 class="sec-title">預約前，你可能想知道</h2>
       </div>
       <div class="faq">
-        {faqs.map((f) => (
-          <details>
+        {faqs.map((f, i) => (
+          <details name="faq" open={i === 0}>
             <summary>{f.q}</summary>
             <div class="ans">{f.a}</div>
           </details>
@@ -269,39 +270,42 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- footer -->
-  <footer class="foot">
+  <!-- FOOTER -->
+  <footer class="foot sec">
     <div class="wrap">
-      <div class="brand latin">I'm here</div>
-      <div class="zh">有我在療癒所 · since 2024</div>
-      {(SOCIAL.instagram || SOCIAL.facebook || SOCIAL.threads) && (
-        <div class="social">
-          {SOCIAL.instagram && <a href={SOCIAL.instagram} target="_blank" rel="noopener">Instagram</a>}
-          {SOCIAL.facebook  && <a href={SOCIAL.facebook}  target="_blank" rel="noopener">Facebook</a>}
-          {SOCIAL.threads   && <a href={SOCIAL.threads}   target="_blank" rel="noopener">Threads</a>}
+      <div class="cols">
+        <div>
+          <div class="brand">I&rsquo;m here</div>
+          <div class="since">有我在療癒所 · since 2024</div>
+          {(SOCIAL.instagram || SOCIAL.facebook || SOCIAL.threads) && (
+            <div class="social">
+              {SOCIAL.instagram && <a href={SOCIAL.instagram} target="_blank" rel="noopener">Instagram</a>}
+              {SOCIAL.facebook  && <a href={SOCIAL.facebook}  target="_blank" rel="noopener">Facebook</a>}
+              {SOCIAL.threads   && <a href={SOCIAL.threads}   target="_blank" rel="noopener">Threads</a>}
+            </div>
+          )}
         </div>
-      )}
-      <div class="row">
-        <div class="info">
-          📍 {ADDRESS}<br />
+        <div>
+          <div class="lbl">地點</div>
+          <p class="info">{ADDRESS}</p>
           <a class="maplink" href={MAP_URL} target="_blank" rel="noopener">在 Google 地圖開啟 →</a>
-          <div class="cta">
-            <a class="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
-            <a class="btn btn-line" href={LINE_URL} target="_blank" rel="noopener">LINE 諮詢</a>
-          </div>
         </div>
-        <div class="info">
-營業時間<br />週一～週日 10:00–21:00<br />
-          （採預約制，敬請事先預約）
+        <div>
+          <div class="lbl">營業時間</div>
+          <p class="info">週一～週日 10:00–21:00<br />（採預約制，敬請事先預約）</p>
         </div>
       </div>
-      <div class="copyright">© {new Date().getFullYear()} I'm here 有我在療癒所</div>
+      <div class="fcta">
+        <a class="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
+        <a class="btn btn-ghost" href={LINE_URL} target="_blank" rel="noopener">LINE 諮詢</a>
+      </div>
+      <div class="copyright">© {new Date().getFullYear()} I&rsquo;m here 有我在療癒所</div>
     </div>
   </footer>
 
   <!-- 手機固定預約列 -->
   <div class="bookbar">
-    <a class="btn btn-line" href={LINE_URL} target="_blank" rel="noopener">LINE 諮詢</a>
+    <a class="btn btn-ghost" href={LINE_URL} target="_blank" rel="noopener">LINE 諮詢</a>
     <a class="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
   </div>
 </Layout>
