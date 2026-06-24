@@ -3,7 +3,7 @@
 export const BOOK_URL = "https://liff.line.me/2010483817-ECzJ2F7B"; // LINE 預約入口（LIFF，會綁定身分才收得到通知）
 export const BOOK_WEB = "https://healing-booking.vercel.app";      // 網頁版預約（桌機備用）
 export const LINE_URL = "https://lin.ee/YvD0ZR6";                  // LINE 官方帳號
-export const MAP_URL  = "https://maps.app.goo.gl/yhqgjgoiSVQnAC1dA";
+export const MAP_URL  = "https://maps.app.goo.gl/AtPDgVYjRramzmm69";  // Google 商家檔案地圖連結
 export const ADDRESS  = "桃園市大園區致祥一街95號2樓（距桃園高鐵步行 8 分鐘）";
 
 // 專業音療師培訓 — 報名 Google 表單（公開填寫連結）
