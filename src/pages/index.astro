@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Assessment from "../components/Assessment";
 import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, TRAINING, SOCIAL, EVENTS } from "../data/services";
 
-// 見證牆（方向 B：精煉短引文 + masonry）
+// 見證牆（方向 F：精煉短引文 + masonry）
 const voices = [
   { tag: "個人頌缽", text: "缽在身上磨，好舒服，震動震到身體很裡面。身體越來越鬆，突然被自己的打呼聲嚇醒，太舒服太感謝老師了！" },
   { tag: "個人頌缽", text: "一開始思緒很混亂，透過一次次的缽聲把我帶回當下，我才意識到頭腦多麼 overload。我沒想過，專注自己是這麼爽的一件事！" },
@@ -100,23 +100,26 @@ const jsonLd = {
         <a href="#events">活動</a>
         <a href="#voices">見證</a>
         <a href="#faq">FAQ</a>
-        <a class="nv-book btn btn-acc" href={BOOK_URL} target="_blank" rel="noopener">預約</a>
+        <a class="nv-book btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">預約</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
   <header class="hero" id="top">
-    <div class="scrim"></div>
-    <div class="vacc">有我在・桃園大園</div>
-    <div class="inner">
-      <div class="sub latin">a quiet place to be cared for</div>
-      <h1>給忙碌生活中的你，<br />一段被好好照顧的時間</h1>
-      <p class="desc">桃園大園・頌缽聲療・希塔療癒・靈氣療癒　|　蕙如老師帶領</p>
-      <div class="cta">
-        <a class="btn btn-pri" href="#assess">3 分鐘，找到適合我的療癒</a>
-        <a class="btn btn-ghost" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="sub latin">breathe, you are held here</div>
+        <h1>給忙碌生活中的你，一段被好好照顧的時間</h1>
+        <p class="desc">桃園大園・頌缽聲療・希塔療癒・靈氣療癒<br />蕙如老師帶領，3 分鐘自評，找到最適合你的療癒。</p>
+        <div class="cta">
+          <a class="btn btn-dark" href="#assess">3 分鐘，找到適合我的療癒</a>
+          <a class="btn btn-ghost" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
+        </div>
       </div>
+      <figure class="hero-photo">
+        <img src="/photos/hero1.jpg" alt="有我在療癒所療癒空間與頌缽聲療情境" />
+      </figure>
     </div>
   </header>
 
@@ -126,7 +129,7 @@ const jsonLd = {
       <div class="head">
         <span class="eyebrow">Self Check</span>
         <h2 class="sec-title">先聽聽你的身體，<br />想被怎麼照顧</h2>
-        <p class="lead">拉動下面 6 個感受，看看此刻最適合你的療癒方式。沒有對錯，只是陪你停下來、感覺自己。</p>
+        <p class="lead assess-lead">拉動下面 10 個感受，看看此刻最適合的療癒方式，沒有對錯，只是陪自己停下來、感覺自己</p>
       </div>
       <Assessment client:load />
     </div>
@@ -149,8 +152,8 @@ const jsonLd = {
               <p class="desc">{s.desc}</p>
               <ul class="chips">{s.chips.map((c) => <li>{c}</li>)}</ul>
               <div class="price">
-                <span class="main">{s.priceMain}</span>
                 <span class="note">{s.priceNote}</span>
+                <span class="main">{s.priceMain}</span>
               </div>
             </div>
           </article>
@@ -183,7 +186,7 @@ const jsonLd = {
         <div class="cn">{TRAINING.comboNote}</div>
       </div>
       <div class="t-cta">
-        <a class="btn btn-acc" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
+        <a class="btn btn-dark" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
         <a class="btn btn-text" href={LINE_URL} target="_blank" rel="noopener">加 LINE 問梯次時間 →</a>
       </div>
       <p class="tnote">{TRAINING.note}</p>

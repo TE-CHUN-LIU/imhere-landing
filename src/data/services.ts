@@ -1,4 +1,4 @@
-// 有我在療癒所 — 服務資料、自評題目、推薦邏輯（方向 B・墨息）
+// 有我在療癒所 — 服務資料、自評題目、推薦邏輯（方向 F・陶光）
 
 export const BOOK_URL = "https://liff.line.me/2010483817-ECzJ2F7B"; // LINE 預約入口（LIFF，會綁定身分才收得到通知）
 export const BOOK_WEB = "https://healing-booking.vercel.app";      // 網頁版預約（桌機備用）
@@ -58,10 +58,10 @@ export const SERVICES: Service[] = [
     photo: "/photos/bowl.jpg",
     desc: "透過頌缽的聲音與振動，陪伴身心慢慢放鬆，讓忙碌的思緒有機會停下來，回到當下，感受內在的安定與平衡。",
     chips: ["想放鬆、舒緩壓力", "疲憊緊繃", "思緒繁雜"],
-    priceMain: "NT$2,200／人",
-    priceNote: "雙人 4,000 · 三人 5,400 · 約 90–120 分鐘",
-    price: "NT$2,200／人（雙人 4,000・三人 5,400・約 90–120 分鐘）",
-    meta: "約 90–120 分鐘 ・ NT$2,200／人",
+    priceMain: "單人|2200元。雙人|4000元。三人|5400元",
+    priceNote: "約90-120分鐘",
+    price: "約90-120分鐘。單人|2200元。雙人|4000元。三人|5400元",
+    meta: "約90-120分鐘。單人|2200元。雙人|4000元。三人|5400元",
   },
   {
     key: "theta",
@@ -70,10 +70,10 @@ export const SERVICES: Service[] = [
     photo: "/photos/theta.jpg",
     desc: "透過溫和的對話與覺察，陪伴你探索內在信念與情緒，整理當下的困惑與卡點，看見更多可能性。",
     chips: ["生活關係迷惘", "重複的課題", "想更認識自己"],
-    priceMain: "NT$2,200／次",
-    priceNote: "約 90 分鐘 · 可線上進行",
-    price: "NT$2,200／次（約 90 分鐘・可線上進行）",
-    meta: "約 90 分鐘 ・ NT$2,200／次 ・ 可線上",
+    priceMain: "一小時|2200元。每增加30分鐘+500元。",
+    priceNote: "60分鐘(可線上療癒)",
+    price: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
+    meta: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
   },
   {
     key: "reiki",
@@ -82,31 +82,37 @@ export const SERVICES: Service[] = [
     photo: "/photos/reiki.jpg",
     desc: "透過靜心與能量陪伴，協助身心回到放鬆與平衡的狀態，給自己一段安靜休息的時間。",
     chips: ["長期高壓忙碌", "情緒緊繃", "想練習自我照顧"],
-    priceMain: "NT$2,200／次",
-    priceNote: "約 60 分鐘 · 可線上進行",
-    price: "NT$2,200／次（約 60 分鐘・可線上進行）",
-    meta: "約 60 分鐘 ・ NT$2,200／次 ・ 可線上",
+    priceMain: "一小時|2200元。每增加30分鐘+500元。",
+    priceNote: "60分鐘(可線上療癒)",
+    price: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
+    meta: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
   },
 ];
 
-// 自評題目（同意度 1–7：非常不同意 → 非常同意）。每題歸屬一種服務，兩題一組。
-export type Q = { id: string; text: string; svc: Service["key"] };
+// 自評題目（五點量表：非常不同意 → 非常同意）。每題可偏向一種或多種服務。
+export type Q = { id: string; text: string; svc: Service["key"][] };
 export const QUESTIONS: Q[] = [
-  { id: "q1", text: "最近生活中的壓力，讓我有些喘不過氣",                 svc: "bowl"  },
-  { id: "q2", text: "我的腦袋常常停不下來，即使休息時也一直在思考事情",   svc: "bowl"  },
-  { id: "q3", text: "我經常感到疲憊，即使休息後也很難恢復精神",           svc: "reiki" },
-  { id: "q4", text: "我已經照顧了很多人，卻很少好好照顧自己",             svc: "reiki" },
-  { id: "q5", text: "我常感受到情緒卡在心裡，卻不知道該如何整理",         svc: "theta" },
-  { id: "q6", text: "我願意更深入地認識自己，探索內在真正的感受與需求",   svc: "theta" },
+  { id: "q1", text: "最近生活中的壓力，讓我有些喘不過氣", svc: ["bowl", "reiki"] },
+  { id: "q2", text: "我經常感到疲憊，即使休息後也很難恢復精神", svc: ["bowl", "reiki"] },
+  { id: "q3", text: "我渴望一段安靜的時間，單純地休息與陪伴自己", svc: ["bowl", "reiki"] },
+  { id: "q4", text: "我的睡眠品質不太理想，容易淺眠、多夢或睡醒仍感到疲累", svc: ["bowl", "reiki"] },
+  { id: "q5", text: "我已經照顧了很多人，卻很少好好照顧自己", svc: ["bowl", "theta", "reiki"] },
+  { id: "q6", text: "我常感受到情緒卡在心裡，卻不知道該如何整理", svc: ["bowl", "theta", "reiki"] },
+  { id: "q7", text: "我的腦袋常常停不下來，即使休息時也一直在思考事情", svc: ["bowl", "theta", "reiki"] },
+  { id: "q8", text: "某些問題或課題，似乎反覆在我的人生中出現", svc: ["theta"] },
+  { id: "q9", text: "我對未來有些迷惘，不太確定自己真正想要的是什麼", svc: ["theta"] },
+  { id: "q10", text: "我願意更深入地認識自己，探索內在真正的感受與需求", svc: ["theta"] },
 ];
 
 export type Scores = Record<string, number>;
 
-// 回傳推薦的服務 key；各服務分數＝其兩題滑桿值加總，取最高者；平手優先序 bowl > theta > reiki
+// 回傳推薦的服務 key；題目偏向的服務都會加分，取總分最高者；平手優先序 bowl > theta > reiki
 export function recommend(s: Scores): Service["key"] {
   const order: Service["key"][] = ["bowl", "theta", "reiki"];
   const total: Record<Service["key"], number> = { bowl: 0, theta: 0, reiki: 0 };
-  for (const q of QUESTIONS) total[q.svc] += s[q.id] ?? 0;
+  for (const q of QUESTIONS) {
+    for (const service of q.svc) total[service] += s[q.id] ?? 0;
+  }
   let best: Service["key"] = "bowl";
   let bestScore = -1;
   for (const k of order) {
