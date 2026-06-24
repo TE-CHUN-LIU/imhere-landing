@@ -544,18 +544,71 @@ img {
   line-height: 1.4;
 }
 
-.svc .price .main {
-  display: block;
-  color: var(--accent);
-  font-family: "Noto Serif TC", serif;
-  font-size: 20px;
+.svc .price {
+  width: min(100%, 360px);
+  margin: 28px auto 0;
+  border: 1px solid rgba(194, 96, 63, .18);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(251, 246, 239, .86), rgba(243, 233, 220, .5));
+  padding: 18px;
 }
 
-.svc .price .note {
-  display: block;
-  margin-bottom: 6px;
+.svc .price-time {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  color: var(--taupe);
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+.svc .price-kicker {
+  color: var(--accent);
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: .12em;
+}
+
+.svc .price-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.svc .price-item {
+  display: grid;
+  gap: 2px;
+  border-radius: 8px;
+  background: rgba(251, 246, 239, .82);
+  padding: 11px 10px 12px;
+}
+
+.svc .price-item span {
   color: var(--faint);
-  font-size: 12.5px;
+  font-size: 12px;
+  letter-spacing: .08em;
+}
+
+.svc .price-item strong {
+  color: var(--accent);
+  font-family: "Noto Serif TC", serif;
+  font-size: clamp(18px, 2vw, 21px);
+  font-weight: 400;
+  letter-spacing: .02em;
+  line-height: 1.35;
+}
+
+.svc .price-extra {
+  margin-top: 10px;
+  border-top: 1px solid rgba(61, 46, 38, .1);
+  padding-top: 10px;
+  color: var(--quote-soft);
+  font-size: 13px;
+  letter-spacing: .04em;
 }
 
 .tiers {

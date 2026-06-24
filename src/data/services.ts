@@ -46,6 +46,11 @@ export type Service = {
   chips: string[];
   priceMain: string;   // 主價（accent 色，Noto Serif）
   priceNote: string;   // 時長／備註（弱字）
+  pricing: {
+    time: string;
+    items: Array<{ label: string; value: string }>;
+    extra?: string;
+  };
   price: string;       // 完整價格字串（給結構化資料 / 結果卡 meta）
   meta: string;        // 結果卡時長價格 meta
 };
@@ -60,6 +65,14 @@ export const SERVICES: Service[] = [
     chips: ["想放鬆、舒緩壓力", "疲憊緊繃", "思緒繁雜"],
     priceMain: "單人|2200元。雙人|4000元。三人|5400元",
     priceNote: "約90-120分鐘",
+    pricing: {
+      time: "約90-120分鐘",
+      items: [
+        { label: "單人", value: "2200元" },
+        { label: "雙人", value: "4000元" },
+        { label: "三人", value: "5400元" },
+      ],
+    },
     price: "約90-120分鐘。單人|2200元。雙人|4000元。三人|5400元",
     meta: "約90-120分鐘。單人|2200元。雙人|4000元。三人|5400元",
   },
@@ -72,6 +85,11 @@ export const SERVICES: Service[] = [
     chips: ["生活關係迷惘", "重複的課題", "想更認識自己"],
     priceMain: "一小時|2200元。每增加30分鐘+500元。",
     priceNote: "60分鐘(可線上療癒)",
+    pricing: {
+      time: "60分鐘(可線上療癒)",
+      items: [{ label: "一小時", value: "2200元" }],
+      extra: "每增加30分鐘 +500元",
+    },
     price: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
     meta: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
   },
@@ -84,6 +102,11 @@ export const SERVICES: Service[] = [
     chips: ["長期高壓忙碌", "情緒緊繃", "想練習自我照顧"],
     priceMain: "一小時|2200元。每增加30分鐘+500元。",
     priceNote: "60分鐘(可線上療癒)",
+    pricing: {
+      time: "60分鐘(可線上療癒)",
+      items: [{ label: "一小時", value: "2200元" }],
+      extra: "每增加30分鐘 +500元",
+    },
     price: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
     meta: "60分鐘(可線上療癒)。一小時|2200元。每增加30分鐘+500元。",
   },
