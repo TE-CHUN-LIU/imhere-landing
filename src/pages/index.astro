@@ -195,14 +195,21 @@ const metaKeywords = [...new Set(
             <div class="num latin">{lv.num}</div>
             <div class="stage">{lv.stage}</div>
             <div class="sub">{lv.sub}</div>
-            <p>{lv.detail}</p>
+            <div class="tgoal">{lv.goal}</div>
+            <ul class="tpoints">{lv.points.map((p) => <li>{p}</li>)}</ul>
             <div class="tprice">{lv.price}</div>
           </article>
         ))}
       </div>
       <div class="combo">
-        <div class="ct">{TRAINING.comboTitle}</div>
-        <div class="cn">{TRAINING.comboNote}</div>
+        <div class="ct">{TRAINING.combo.title}</div>
+        <div class="clead">{TRAINING.combo.lead}</div>
+        <div class="cprice">{TRAINING.combo.price}</div>
+        <div class="cn">{TRAINING.combo.orig}　{TRAINING.combo.save}</div>
+        <div class="cperks">
+          <span class="cperks-lbl">並獲得</span>
+          <ul>{TRAINING.combo.perks.map((p) => <li>{p}</li>)}</ul>
+        </div>
       </div>
       <div class="t-cta">
         <a class="btn btn-dark" href={TRAINING_FORM_URL} target="_blank" rel="noopener">我要報名 / 索取課程資訊</a>
