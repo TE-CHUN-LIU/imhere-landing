@@ -1242,6 +1242,12 @@ img {
   fill: currentColor;
 }
 
+/* IG 圖示本身留白較多，單獨放大讓視覺一致 */
+.social-rail a[aria-label="Instagram"] svg {
+  width: 46px;
+  height: 46px;
+}
+
 @media (max-width: 768px) {
   .social-rail {
     right: 12px;
@@ -1255,6 +1261,10 @@ img {
   .social-rail svg {
     width: 32px;
     height: 32px;
+  }
+  .social-rail a[aria-label="Instagram"] svg {
+    width: 39px;
+    height: 39px;
   }
 }
 
