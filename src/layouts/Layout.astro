@@ -15,6 +15,7 @@ const canonical = new URL(Astro.url.pathname, site).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <script is:inline>document.documentElement.classList.add("js-reveal");</script>
     <meta name="google-site-verification" content="8msN6fRifnF36NuAtDvxhpF1IA8LDIaf7Bsh-2DbL1I" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -44,5 +45,29 @@ const canonical = new URL(Astro.url.pathname, site).href;
   </head>
   <body>
     <slot />
+    <script is:inline>
+      (function () {
+        if (!window.matchMedia || !window.matchMedia("(prefers-reduced-motion: no-preference)").matches) return;
+        var SEL = ".head,.hero .sub,.hero h1,.hero .desc,.hero .cta,.hero-photo,.svc,.tier,.combo,.event,.quote,.about .ph,.about .role,.about .pull,.about .bio,.about .stats,#faq details";
+        var els = [].slice.call(document.querySelectorAll(SEL));
+        var seen = new Map();
+        els.forEach(function (el) {
+          var p = el.parentElement;
+          var i = seen.get(p) || 0;
+          el.style.transitionDelay = Math.min(i, 6) * 70 + "ms";
+          seen.set(p, i + 1);
+        });
+        if (!("IntersectionObserver" in window)) {
+          els.forEach(function (el) { el.classList.add("is-in"); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>

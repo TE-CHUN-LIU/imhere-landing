@@ -65,6 +65,7 @@ export const SOCIAL = {
   instagram: "https://www.instagram.com/im_here_healingspace/",
   facebook:  "https://www.facebook.com/profile.php?id=61557036314307",
   threads:   "", // 尚未提供，留空不顯示
+  youtube:   "", // 尚未提供，留空不顯示（側邊浮動社群列會自動帶出）
 };
 
 export type Service = {
