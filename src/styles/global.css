@@ -1276,3 +1276,131 @@ img {
     transform: none;
   }
 }
+
+/* 自訂游標 + 圖片放大 lightbox */
+.cursor { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .js-cursor, .js-cursor * { cursor: none !important; }
+
+  .js-cursor .cursor {
+    display: block;
+    position: fixed;
+    left: 0; top: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+
+  .cursor-ring,
+  .cursor-dot,
+  .cursor-label {
+    position: absolute;
+    left: 0; top: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor-ring {
+    width: 28px; height: 28px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    transition: width .28s ease, height .28s ease, background .28s ease, border-color .28s ease;
+  }
+
+  .cursor-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: opacity .2s ease;
+  }
+
+  .cursor-label {
+    color: var(--cream);
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 11px;
+    letter-spacing: .12em;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+
+  /* hover 連結／按鈕：環放大 */
+  .js-cursor .cursor.is-hover .cursor-ring {
+    width: 46px; height: 46px;
+    background: rgba(194, 96, 63, .1);
+  }
+
+  /* hover 圖片：環變大、實心、顯示「放大」 */
+  .js-cursor .cursor.is-zoom .cursor-ring {
+    width: 74px; height: 74px;
+    background: var(--accent);
+    border-color: transparent;
+  }
+  .js-cursor .cursor.is-zoom .cursor-dot { opacity: 0; }
+  .js-cursor .cursor.is-zoom .cursor-label { opacity: 1; }
+
+  /* 圖片 hover 微放大（框已 overflow:hidden） */
+  .js-cursor [data-zoom] {
+    transition: transform .55s cubic-bezier(.22, .61, .36, 1);
+  }
+  .js-cursor .ph:hover [data-zoom],
+  .js-cursor .hero-photo:hover [data-zoom] {
+    transform: scale(1.06);
+  }
+}
+
+/* 觸控／無自訂游標時：原生放大鏡游標 */
+[data-zoom] { cursor: zoom-in; }
+
+/* lightbox 放大檢視 */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+  background: rgba(40, 28, 22, .88);
+  cursor: zoom-out;
+}
+
+.lightbox.open {
+  display: flex;
+  animation: lb-fade .3s ease;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+  animation: lb-zoom .35s cubic-bezier(.22, .61, .36, 1);
+}
+
+.lightbox .lb-close {
+  position: absolute;
+  top: 22px; right: 26px;
+  width: 44px; height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(251, 246, 239, .14);
+  color: var(--cream);
+  font-size: 18px;
+  transition: background .2s ease;
+}
+
+.lightbox .lb-close:hover {
+  background: rgba(251, 246, 239, .26);
+}
+
+@keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lb-zoom { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+
+@media (hover: hover) and (pointer: fine) {
+  .js-cursor .lightbox,
+  .js-cursor .lightbox * { cursor: none !important; }
+}
+
+/* lightbox 開啟時隱藏側邊社群列，避免干擾放大檢視 */
+body.lb-on .social-rail { opacity: 0; pointer-events: none; }

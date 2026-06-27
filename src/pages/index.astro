@@ -13,7 +13,7 @@ const voices = [
   { tag: "希塔療癒", text: "我不再執著那些讓自己不舒服的關係，也開始踏出舒適圈。這是我第三次來，謝謝 Here 伴著我成長。" },
 ];
 
-const skills = ["尼泊爾傳統頌缽聲療", "歐美聲音療癒", "臼井靈氣療癒", "冥想引導"];
+const skills = ["尼泊爾傳統頌缽聲療", "希塔療癒", "歐美聲音療癒", "臼井靈氣療癒", "冥想引導"];
 
 const faqs = [
   { q: "需要穿什麼服裝？", a: "建議穿著舒適、放鬆的服裝即可。過程中多以躺姿或坐姿進行，讓身體能自在放鬆最重要。" },
@@ -147,7 +147,7 @@ const metaKeywords = [...new Set(
         </div>
       </div>
       <figure class="hero-photo">
-        <img src="/photos/hero1.jpg" alt="有我在療癒所療癒空間與頌缽聲療情境" />
+        <img src="/photos/hero1.jpg" alt="有我在療癒所療癒空間與頌缽聲療情境" data-zoom />
       </figure>
     </div>
   </header>
@@ -174,7 +174,7 @@ const metaKeywords = [...new Set(
       <div class="svc-list">
         {SERVICES.map((s, i) => (
           <article class={`svc${i % 2 === 1 ? " flip" : ""}`}>
-            <div class="ph"><img src={s.photo} alt={`${s.name}體驗｜有我在療癒所 桃園高鐵`} loading="lazy" /></div>
+            <div class="ph"><img src={s.photo} alt={`${s.name}體驗｜有我在療癒所 桃園高鐵`} loading="lazy" data-zoom /></div>
             <div class="txt">
               <div class="num latin">{s.num}</div>
               <h3>{s.name}</h3>
@@ -286,7 +286,7 @@ const metaKeywords = [...new Set(
   <!-- ABOUT -->
   <section id="about" class="sec">
     <div class="wrap about">
-      <div class="ph"><img src="/photos/owner.jpg" alt="Here 老師 — 有我在療癒所 聲音療癒師" loading="lazy" /></div>
+      <div class="ph"><img src="/photos/owner.jpg" alt="Here 老師 — 有我在療癒所 聲音療癒師" loading="lazy" data-zoom /></div>
       <div>
         <span class="eyebrow">About</span>
         <h2>Here</h2>
@@ -297,7 +297,7 @@ const metaKeywords = [...new Set(
         <div class="stats">
           <div><div class="n">1,000+</div><div class="l">累積服務人次</div></div>
           <div><div class="n">10 年</div><div class="l">企業職涯轉身</div></div>
-          <div><div class="n">2024</div><div class="l">桃園高鐵成立</div></div>
+          <div><div class="n">2024</div><div class="l">I&apos;m here 有我在療癒所成立</div></div>
         </div>
       </div>
     </div>
@@ -340,7 +340,7 @@ const metaKeywords = [...new Set(
           <div class="lbl">地點</div>
           <p class="info">{ADDRESS}</p>
           <a class="maplink" href={MAP_URL} target="_blank" rel="noopener">在 Google 地圖開啟 →</a>
-          <p class="geo-line">鄰近桃園高鐵（青埔）特區，提供桃園頌缽聲療、希塔療癒、靈氣療癒，是桃園地區身心放鬆與能量療癒的推薦選擇。</p>
+          <p class="geo-line">位於桃園高鐵（青埔）特區，提供桃園頌缽聲療、希塔療癒、靈氣療癒，是桃園地區身心放鬆與能量療癒的推薦選擇。</p>
         </div>
         <div>
           <div class="lbl">營業時間</div>
@@ -351,7 +351,7 @@ const metaKeywords = [...new Set(
         <a class="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
         <a class="btn btn-ghost" href={LINE_URL} target="_blank" rel="noopener">LINE 諮詢</a>
       </div>
-      <div class="copyright">© {new Date().getFullYear()} I&apos;m here 有我在療癒所</div>
+      <div class="copyright">© 2024 I&apos;m here 有我在療癒所</div>
     </div>
   </footer>
 

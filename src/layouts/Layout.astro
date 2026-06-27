@@ -45,6 +45,17 @@ const canonical = new URL(Astro.url.pathname, site).href;
   </head>
   <body>
     <slot />
+
+    <!-- 自訂游標（桌機）＋ 圖片放大 lightbox -->
+    <div class="cursor" aria-hidden="true">
+      <div class="cursor-ring"></div>
+      <div class="cursor-dot"></div>
+      <div class="cursor-label">放大</div>
+    </div>
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="圖片放大檢視">
+      <button class="lb-close" type="button" aria-label="關閉">✕</button>
+      <img src="" alt="" />
+    </div>
     <script is:inline>
       (function () {
         if (!window.matchMedia || !window.matchMedia("(prefers-reduced-motion: no-preference)").matches) return;
@@ -67,6 +78,57 @@ const canonical = new URL(Astro.url.pathname, site).href;
           });
         }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
         els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+    <script is:inline>
+      (function () {
+        // 圖片放大 lightbox（所有裝置）
+        var lb = document.querySelector(".lightbox");
+        var lbImg = lb && lb.querySelector("img");
+        function openLB(src, alt) {
+          if (!lb) return;
+          lbImg.src = src; lbImg.alt = alt || "";
+          lb.classList.add("open"); document.body.classList.add("lb-on"); document.body.style.overflow = "hidden";
+        }
+        function closeLB() {
+          if (!lb) return;
+          lb.classList.remove("open"); document.body.classList.remove("lb-on"); document.body.style.overflow = "";
+          setTimeout(function () { lbImg.src = ""; }, 250);
+        }
+        document.querySelectorAll("[data-zoom]").forEach(function (img) {
+          img.addEventListener("click", function () { openLB(img.currentSrc || img.src, img.alt); });
+        });
+        if (lb) lb.addEventListener("click", closeLB);
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLB(); });
+
+        // 自訂游標（僅桌機、有精準指標）
+        if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+        var cur = document.querySelector(".cursor");
+        if (!cur) return;
+        document.documentElement.classList.add("js-cursor");
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var x = window.innerWidth / 2, y = window.innerHeight / 2, rx = x, ry = y;
+        document.addEventListener("mousemove", function (e) {
+          x = e.clientX; y = e.clientY; cur.style.opacity = "1";
+          if (reduce) { cur.style.transform = "translate(" + x + "px," + y + "px)"; }
+        });
+        if (!reduce) {
+          (function loop() {
+            rx += (x - rx) * 0.2; ry += (y - ry) * 0.2;
+            cur.style.transform = "translate(" + rx + "px," + ry + "px)";
+            requestAnimationFrame(loop);
+          })();
+        }
+        document.addEventListener("mouseover", function (e) {
+          var z = e.target.closest("[data-zoom]");
+          var h = e.target.closest("a,button,input,[role=button],summary");
+          cur.classList.toggle("is-zoom", !!z);
+          cur.classList.toggle("is-hover", !!h && !z);
+        });
+        document.addEventListener("mouseout", function (e) {
+          if (!e.relatedTarget) cur.classList.remove("is-zoom", "is-hover");
+        });
+        document.documentElement.addEventListener("mouseleave", function () { cur.style.opacity = "0"; });
       })();
     </script>
   </body>
