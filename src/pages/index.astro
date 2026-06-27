@@ -38,7 +38,7 @@ const jsonLd = {
       "name": "I'm here 有我在療癒所",
       "url": SITE + "/",
       "image": SITE + "/photos/hero1.jpg",
-      "description": "桃園大園的頌缽聲療、希塔療癒、靈氣療癒空間，由 Here 老師帶領，陪你在忙碌生活中好好休息、找回身心平衡。",
+      "description": "桃園高鐵的頌缽聲療、希塔療癒、靈氣療癒空間，由 Here 老師帶領，陪你在忙碌生活中好好休息、找回身心平衡。",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "致祥一街95號2樓",
@@ -63,7 +63,7 @@ const jsonLd = {
         "name": "療癒服務",
         "itemListElement": SERVICES.map((s) => ({
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": s.name, "description": `${s.desc}（${s.price}）`, "keywords": s.keywords.join("、") },
+          "itemOffered": { "@type": "Service", "name": s.name, "description": `${s.desc}（${s.price}）`, "keywords": [...s.keywords, ...s.seoKeywords].join("、") },
         })),
       },
     },
@@ -84,9 +84,16 @@ const jsonLd = {
     },
   ],
 };
+
+// SEO／GEO：彙整全部服務的長尾關鍵字（核心＋長尾，去重）
+const metaKeywords = [...new Set(
+  SERVICES.flatMap((s) => [...s.keywords, ...s.seoKeywords]).concat([
+    "桃園高鐵療癒", "桃園身心靈", "有我在療癒所",
+  ])
+)].join("、");
 ---
 
-<Layout>
+<Layout keywords={metaKeywords}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <!-- NAV -->
@@ -145,7 +152,7 @@ const jsonLd = {
       <div class="svc-list">
         {SERVICES.map((s, i) => (
           <article class={`svc${i % 2 === 1 ? " flip" : ""}`}>
-            <div class="ph"><img src={s.photo} alt={`${s.name}體驗｜有我在療癒所 桃園大園`} loading="lazy" /></div>
+            <div class="ph"><img src={s.photo} alt={`${s.name}體驗｜有我在療癒所 桃園高鐵`} loading="lazy" /></div>
             <div class="txt">
               <div class="num latin">{s.num}</div>
               <h3>{s.name}</h3>
@@ -257,11 +264,11 @@ const jsonLd = {
         <div class="role">聲音療癒師 · 身心放鬆帶領者</div>
         <div class="skills">{skills.map((s) => <span>{s}</span>)}</div>
         <p class="pull">「希望透過聲音與陪伴，讓每個人都能在忙碌生活中，找到屬於自己的安定與平衡。」</p>
-        <p class="bio">曾任職大型企業超過 10 年，因親身經歷身心失衡而踏上療癒之路。2024 年於桃園大園成立「有我在療癒所」，陪伴許多人在忙碌的生活中，重新找回放鬆與內在平衡。</p>
+        <p class="bio">曾任職大型企業超過 10 年，因親身經歷身心失衡而踏上療癒之路。2024 年於桃園高鐵成立「有我在療癒所」，陪伴許多人在忙碌的生活中，重新找回放鬆與內在平衡。</p>
         <div class="stats">
           <div><div class="n">1,000+</div><div class="l">累積服務人次</div></div>
           <div><div class="n">10 年</div><div class="l">企業職涯轉身</div></div>
-          <div><div class="n">2024</div><div class="l">桃園大園成立</div></div>
+          <div><div class="n">2024</div><div class="l">桃園高鐵成立</div></div>
         </div>
       </div>
     </div>
@@ -304,6 +311,7 @@ const jsonLd = {
           <div class="lbl">地點</div>
           <p class="info">{ADDRESS}</p>
           <a class="maplink" href={MAP_URL} target="_blank" rel="noopener">在 Google 地圖開啟 →</a>
+          <p class="geo-line">鄰近桃園高鐵（青埔）特區，提供桃園頌缽聲療、希塔療癒、靈氣療癒，是桃園地區身心放鬆與能量療癒的推薦選擇。</p>
         </div>
         <div>
           <div class="lbl">營業時間</div>
