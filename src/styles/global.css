@@ -1222,9 +1222,9 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
-  border-radius: 16px;
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
   background: var(--accent);
   color: var(--cream);
   box-shadow: 0 6px 18px rgba(61, 46, 38, .2);
@@ -1237,15 +1237,15 @@ img {
 }
 
 .social-rail svg {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   fill: currentColor;
 }
 
 /* IG 圖示本身留白較多，單獨放大讓視覺一致 */
 .social-rail a[aria-label="Instagram"] svg {
-  width: 46px;
-  height: 46px;
+  width: 53px;
+  height: 53px;
 }
 
 @media (max-width: 768px) {
@@ -1254,17 +1254,17 @@ img {
     gap: 12px;
   }
   .social-rail a {
-    width: 48px;
-    height: 48px;
-    border-radius: 13px;
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
   }
   .social-rail svg {
-    width: 32px;
-    height: 32px;
+    width: 37px;
+    height: 37px;
   }
   .social-rail a[aria-label="Instagram"] svg {
-    width: 39px;
-    height: 39px;
+    width: 45px;
+    height: 45px;
   }
 }
 
