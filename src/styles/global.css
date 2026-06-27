@@ -1209,25 +1209,25 @@ img {
 /* 側邊浮動社群列 */
 .social-rail {
   position: fixed;
-  right: 16px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 60;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .social-rail a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
   background: var(--accent);
   color: var(--cream);
-  box-shadow: 0 4px 14px rgba(61, 46, 38, .18);
+  box-shadow: 0 6px 18px rgba(61, 46, 38, .2);
   transition: transform .2s ease, filter .2s ease;
 }
 
@@ -1237,24 +1237,24 @@ img {
 }
 
 .social-rail svg {
-  width: 23px;
-  height: 23px;
+  width: 30px;
+  height: 30px;
   fill: currentColor;
 }
 
 @media (max-width: 768px) {
   .social-rail {
-    right: 10px;
-    gap: 9px;
+    right: 12px;
+    gap: 12px;
   }
   .social-rail a {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
   }
   .social-rail svg {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
 }
 
