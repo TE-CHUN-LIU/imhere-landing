@@ -2,11 +2,11 @@
 import "../styles/global.css";
 interface Props { title?: string; description?: string; keywords?: string; }
 const {
-  title = "I'm here 有我在療癒所｜頌缽聲療・希塔・靈氣療癒｜桃園高鐵",
+  title = "I'm here 有我在療癒所 頌缽｜靈氣｜希塔｜水晶飾品",
   description = "給忙碌生活中的你，一段被好好照顧的時間。桃園高鐵頌缽聲療、希塔療癒、靈氣療癒，Here 老師帶領。3 分鐘自評，找到最適合你的療癒。",
   keywords,
 } = Astro.props;
-const site = Astro.site ?? new URL("https://imhere-landing.vercel.app");
+const site = Astro.site ?? new URL("https://im-here-healingspace.com");
 const ogImage = new URL("/photos/hero1.jpg", site).href;
 const canonical = new URL(Astro.url.pathname, site).href;
 ---

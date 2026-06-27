@@ -5,7 +5,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config — 部署 Vercel（靜態），root 路徑
 export default defineConfig({
-  site: 'https://imhere-landing.vercel.app',
+  site: 'https://im-here-healingspace.com',
   trailingSlash: 'ignore',
   vite: {
     plugins: [tailwindcss()]

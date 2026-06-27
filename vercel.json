@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.im-here-healingspace.com" }],
+      "destination": "https://im-here-healingspace.com/:path*",
+      "permanent": true
+    }
+  ]
+}

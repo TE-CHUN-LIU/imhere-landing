@@ -1,7 +1,7 @@
 // 有我在療癒所 — 服務資料、自評題目、推薦邏輯（方向 F・陶光）
 
 export const BOOK_URL = "https://liff.line.me/2010483817-ECzJ2F7B"; // LINE 預約入口（LIFF，會綁定身分才收得到通知）
-export const BOOK_WEB = "https://healing-booking.vercel.app";      // 網頁版預約（桌機備用）
+export const BOOK_WEB = "https://book.im-here-healingspace.com";   // 網頁版預約（桌機備用）
 export const LINE_URL = "https://lin.ee/YvD0ZR6";                  // LINE 官方帳號
 export const MAP_URL  = "https://maps.app.goo.gl/AtPDgVYjRramzmm69";  // Google 商家檔案地圖連結
 export const ADDRESS  = "桃園市大園區致祥一街95號2樓（距桃園高鐵步行 8 分鐘）";
