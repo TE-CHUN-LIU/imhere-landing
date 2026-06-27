@@ -527,10 +527,21 @@ img {
 
 .svc .desc {
   max-width: 24em;
-  margin: 0 auto 20px;
+  margin: 0 auto 14px;
   color: var(--taupe);
   font-size: 14.5px;
   line-height: 2.05;
+}
+
+.svc .keywords {
+  margin: 0 auto 20px;
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+.svc .keywords .kw-icon {
+  margin-right: 4px;
 }
 
 .svc .chips {

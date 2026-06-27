@@ -43,6 +43,7 @@ export type Service = {
   name: string;
   photo: string;
   desc: string;
+  keywords: string[];   // 療癒核心關鍵字（👉 一行）
   chips: string[];
   priceMain: string;   // 主價（accent 色，Noto Serif）
   priceNote: string;   // 時長／備註（弱字）
@@ -61,7 +62,8 @@ export const SERVICES: Service[] = [
     num: "01",
     name: "頌缽聲療",
     photo: "/photos/bowl.jpg",
-    desc: "透過頌缽的聲音與振動，陪伴身心慢慢放鬆，讓忙碌的思緒有機會停下來，回到當下，感受內在的安定與平衡。",
+    desc: "透過頌缽的聲音與振動，陪伴身心慢慢放鬆，讓思緒漸漸沉澱，感受內在安定與平衡。",
+    keywords: ["聲音", "振動", "沉澱"],
     chips: ["想放鬆、舒緩壓力", "疲憊緊繃", "思緒繁雜"],
     priceMain: "單人|2200元。雙人|4000元。三人|5400元",
     priceNote: "約90-120分鐘",
@@ -81,7 +83,8 @@ export const SERVICES: Service[] = [
     num: "02",
     name: "希塔療癒",
     photo: "/photos/theta.jpg",
-    desc: "透過溫和的對話與覺察，陪伴你探索內在信念與情緒，整理當下的困惑與卡點，看見更多可能性。",
+    desc: "透過溫和的對話與覺察，探索內在信念與情緒，整理想法與感受，看見更多不同可能。",
+    keywords: ["探索", "覺察", "信念"],
     chips: ["生活關係迷惘", "重複的課題", "想更認識自己"],
     priceMain: "一小時|2200元。每增加30分鐘+500元。",
     priceNote: "60分鐘(可線上療癒)",
@@ -98,7 +101,8 @@ export const SERVICES: Service[] = [
     num: "03",
     name: "靈氣療癒",
     photo: "/photos/reiki.jpg",
-    desc: "透過靜心與能量陪伴，協助身心回到放鬆與平衡的狀態，給自己一段安靜休息的時間。",
+    desc: "透過溫柔的能量陪伴，邀請自己回到當下，感受平靜與放鬆，重新與內在的自己連結。",
+    keywords: ["能量", "當下", "連結"],
     chips: ["長期高壓忙碌", "情緒緊繃", "想練習自我照顧"],
     priceMain: "一小時|2200元。每增加30分鐘+500元。",
     priceNote: "60分鐘(可線上療癒)",

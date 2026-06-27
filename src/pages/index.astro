@@ -63,7 +63,7 @@ const jsonLd = {
         "name": "療癒服務",
         "itemListElement": SERVICES.map((s) => ({
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": s.name, "description": `${s.desc}（${s.price}）` },
+          "itemOffered": { "@type": "Service", "name": s.name, "description": `${s.desc}（${s.price}）`, "keywords": s.keywords.join("、") },
         })),
       },
     },
@@ -150,6 +150,7 @@ const jsonLd = {
               <div class="num latin">{s.num}</div>
               <h3>{s.name}</h3>
               <p class="desc">{s.desc}</p>
+              <p class="keywords"><span class="kw-icon">👉</span>關鍵字：{s.keywords.join("・")}</p>
               <ul class="chips">{s.chips.map((c) => <li>{c}</li>)}</ul>
               <div class="price">
                 <div class="price-time">
