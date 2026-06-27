@@ -7,10 +7,10 @@ import { SERVICES, BOOK_URL, LINE_URL, MAP_URL, ADDRESS, TRAINING_FORM_URL, TRAI
 const voices = [
   { tag: "個人頌缽", text: "缽在身上磨，好舒服，震動震到身體很裡面。身體越來越鬆，突然被自己的打呼聲嚇醒，太舒服太感謝老師了！" },
   { tag: "個人頌缽", text: "一開始思緒很混亂，透過一次次的缽聲把我帶回當下，我才意識到頭腦多麼 overload。我沒想過，專注自己是這麼爽的一件事！" },
-  { tag: "雙人頌缽", text: "那天回家很快就睡著，隔天居然沒聽到鬧鐘聲。後來精神好很多，開會也比較專注，謝謝蕙如，下個月會再回訪。" },
+  { tag: "雙人頌缽", text: "那天回家很快就睡著，隔天居然沒聽到鬧鐘聲。後來精神好很多，開會也比較專注，謝謝 Here，下個月會再回訪。" },
   { tag: "團體頌缽", text: "那個聲音從耳朵慢慢進到身體裡，好像有什麼被輕輕梳理，不知不覺就睡著了。醒來後肩膀放鬆了、呼吸變深，整個人變得很輕。" },
-  { tag: "希塔療癒", text: "謝謝蕙如老師溫暖的引導，那一刻我知道我終於擁抱到內在那個小女孩，胸口那塊石頭終於瓦解。" },
-  { tag: "希塔療癒", text: "我不再執著那些讓自己不舒服的關係，也開始踏出舒適圈。這是我第三次來，謝謝蕙如伴著我成長。" },
+  { tag: "希塔療癒", text: "謝謝 Here 老師溫暖的引導，那一刻我知道我終於擁抱到內在那個小女孩，胸口那塊石頭終於瓦解。" },
+  { tag: "希塔療癒", text: "我不再執著那些讓自己不舒服的關係，也開始踏出舒適圈。這是我第三次來，謝謝 Here 伴著我成長。" },
 ];
 
 const skills = ["尼泊爾傳統頌缽聲療", "歐美聲音療癒", "臼井靈氣療癒", "冥想引導"];
@@ -38,7 +38,7 @@ const jsonLd = {
       "name": "I'm here 有我在療癒所",
       "url": SITE + "/",
       "image": SITE + "/photos/hero1.jpg",
-      "description": "桃園大園的頌缽聲療、希塔療癒、靈氣療癒空間，由蕙如老師帶領，陪你在忙碌生活中好好休息、找回身心平衡。",
+      "description": "桃園大園的頌缽聲療、希塔療癒、靈氣療癒空間，由 Here 老師帶領，陪你在忙碌生活中好好休息、找回身心平衡。",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "致祥一街95號2樓",
@@ -111,7 +111,7 @@ const jsonLd = {
       <div class="hero-copy">
         <div class="sub latin">breathe, you are held here</div>
         <h1>給忙碌生活中的你，一段被好好照顧的時間</h1>
-        <p class="desc">桃園大園・頌缽聲療・希塔療癒・靈氣療癒<br />蕙如老師帶領，3 分鐘自評，找到最適合你的療癒。</p>
+        <p class="desc">桃園高鐵・頌缽聲療・希塔療癒・靈氣療癒<br />Here 老師帶領，3 分鐘自評，找到最適合你的療癒。</p>
         <div class="cta">
           <a class="btn btn-dark" href="#assess">3 分鐘，找到適合我的療癒</a>
           <a class="btn btn-ghost" href={BOOK_URL} target="_blank" rel="noopener">立即預約</a>
@@ -249,10 +249,10 @@ const jsonLd = {
   <!-- ABOUT -->
   <section id="about" class="sec">
     <div class="wrap about">
-      <div class="ph"><img src="/photos/owner.jpg" alt="蕙如老師 — 有我在療癒所 聲音療癒師" loading="lazy" /></div>
+      <div class="ph"><img src="/photos/owner.jpg" alt="Here 老師 — 有我在療癒所 聲音療癒師" loading="lazy" /></div>
       <div>
         <span class="eyebrow">About</span>
-        <h2>蕙如 ｜ Here</h2>
+        <h2>Here</h2>
         <div class="role">聲音療癒師 · 身心放鬆帶領者</div>
         <div class="skills">{skills.map((s) => <span>{s}</span>)}</div>
         <p class="pull">「希望透過聲音與陪伴，讓每個人都能在忙碌生活中，找到屬於自己的安定與平衡。」</p>

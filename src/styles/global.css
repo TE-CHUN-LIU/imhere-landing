@@ -446,6 +446,14 @@ img {
   letter-spacing: .06em;
 }
 
+.result-meta-time {
+  margin-bottom: 4px;
+}
+
+.result-meta-price {
+  line-height: 1.7;
+}
+
 .result-acts {
   display: flex;
   flex-direction: column;

@@ -62,7 +62,13 @@ export default function Assessment() {
             <div className="result-main">
               <h3>此刻，{svc.name}也許最適合你</h3>
               <p>{svc.desc}</p>
-              <div className="result-meta">{svc.meta}</div>
+              <div className="result-meta">
+                <div className="result-meta-time">{svc.pricing.time}</div>
+                <div className="result-meta-price">
+                  {svc.pricing.items.map((i) => `${i.label}｜${i.value}`).join("　")}
+                  {svc.pricing.extra ? `　${svc.pricing.extra}` : ""}
+                </div>
+              </div>
             </div>
             <div className="result-acts">
               <a className="btn btn-pri" href={BOOK_URL} target="_blank" rel="noopener">
@@ -81,7 +87,7 @@ export default function Assessment() {
             </div>
           </div>
           <div className="result-note">
-            不確定也沒關係 — 你也可以加 LINE 跟蕙如聊聊近期的身心狀態，再一起決定。
+            不確定也沒關係 — 你也可以加 LINE 跟 Here 聊聊近期的身心狀態，再一起決定。
           </div>
         </div>
       )}
