@@ -1237,8 +1237,8 @@ img {
 }
 
 .social-rail svg {
-  width: 30px;
-  height: 30px;
+  width: 38px;
+  height: 38px;
   fill: currentColor;
 }
 
@@ -1253,8 +1253,8 @@ img {
     border-radius: 13px;
   }
   .social-rail svg {
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
   }
 }
 
