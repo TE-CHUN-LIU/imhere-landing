@@ -1270,7 +1270,8 @@ img {
 
 /* 捲動進場動畫（尊重系統「減少動態」設定；無 JS 時內容照常顯示） */
 @media (prefers-reduced-motion: no-preference) {
-  .js-reveal :is(.head, .hero .sub, .hero h1, .hero .desc, .hero .cta, .hero-photo,
+  /* 注意：Hero（.hero .sub/h1/.desc/.cta、.hero-photo）改由 GSAP 接管進場，故不列於此 */
+  .js-reveal :is(.head,
     .svc, .tier, .combo, .event, .quote, .about .ph, .about .role, .about .pull,
     .about .bio, .about .stats, #faq details) {
     opacity: 0;
@@ -1279,7 +1280,7 @@ img {
     will-change: opacity, transform;
   }
 
-  .js-reveal :is(.head, .hero .sub, .hero h1, .hero .desc, .hero .cta, .hero-photo,
+  .js-reveal :is(.head,
     .svc, .tier, .combo, .event, .quote, .about .ph, .about .role, .about .pull,
     .about .bio, .about .stats, #faq details).is-in {
     opacity: 1;
