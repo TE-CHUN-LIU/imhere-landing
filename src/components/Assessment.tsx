@@ -32,8 +32,9 @@ export default function Assessment() {
             <input
               type="range" min={1} max={5} step={1}
               value={scores[q.id]}
-              onInput={(event) => set(q.id, Number(event.currentTarget.value))}
+              onChange={(event) => set(q.id, Number(event.currentTarget.value))}
               aria-label={q.text}
+              aria-valuetext={`${scores[q.id]} / 5`}
             />
             <div className="q-scale">
               <span>非常不同意</span>
